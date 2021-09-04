@@ -1,4 +1,5 @@
 import GameSetup.GameSetup;
+import PlayerInput.PlayerInputScanner;
 import Round.GameRound;
 
 import java.util.ArrayList;
@@ -22,9 +23,8 @@ public class GameController {
     void startGame() {
         System.out.println("Type anything to start the game");
 
-        addOneRoundPlayed();
-        GameRound round = new GameRound(this.listOfPeopleToGuess);
-
+        PlayerInputScanner waitToStart = new PlayerInputScanner();
+        waitToStart.requestAndSavePlayerInput();
     }
 
 
@@ -41,9 +41,12 @@ public class GameController {
         game.setListOfPeopleToGuess(setup.getListOfNamesToGuess());
         game.startGame();
 
-        GameRound round = new GameRound(game.listOfPeopleToGuess);
-
-        //round.startRound();
+        while (game.roundsPlayed < 3) {
+            GameRound round = new GameRound(game.listOfPeopleToGuess);
+            round.startRound();
+            game.addOneRoundPlayed();
+            System.out.println("end of loop:  " + game.roundsPlayed);
+        }
 
 
 

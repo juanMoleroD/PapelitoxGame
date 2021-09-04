@@ -46,19 +46,18 @@ class GameRoundTest {
     void doesGameRegisterTheTotalNumberOfWordsAndRemaining() {
         assertEquals(3, roundTest.numberOfWordsToGuess);
         assertEquals(120 ,roundTestForLongArray.numberOfWordsToGuess);
-        assertEquals(3, roundTest.numberOfWordsToGuessRemaining);
-        assertEquals(120, roundTestForLongArray.numberOfWordsToGuessRemaining);
+        assertEquals(3, roundTest.numberOfRemainingWordsToGuess);
+        assertEquals(120, roundTestForLongArray.numberOfRemainingWordsToGuess);
     }
 
-  /*  @Test
+    @Test
     void doesRoundChoosesWordAndRemovesItFromList() {
         String fistValueFromList = roundTest.listOfPeopleToGuess.get(0);
         roundTest.startRound();
         assertNotSame("", roundTest.getWordToGuess());
         assertEquals(fistValueFromList, roundTest.getWordToGuess() );
         assertTrue(roundTest.roundOngoing);
-    }*/
-
+    }
 
     @Test
     void doesGameRegisterOnceAWordHasBeenGuessed() {

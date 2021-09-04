@@ -1,24 +1,29 @@
 package Round;
 
+import PlayerInput.PlayerInputScanner;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class GameRound {
 
-    ArrayList<String> listOfPeopleToGuess = new ArrayList<>();
+    ArrayList<String> listOfPeopleToGuess;
     String wordToGuess = "";
     int numberOfWordsToGuess;
-    int numberOfWordsToGuessRemaining;
+    int numberOfRemainingWordsToGuess;
     boolean roundOngoing;
 
     public GameRound(ArrayList<String> list){
         this.listOfPeopleToGuess = list;
         Collections.shuffle(this.listOfPeopleToGuess);
         this.numberOfWordsToGuess = list.size();
-        this.numberOfWordsToGuessRemaining = this.numberOfWordsToGuess;
+        this.numberOfRemainingWordsToGuess = this.numberOfWordsToGuess;
     }
 
     String getWordToGuess() {return wordToGuess;}
+
+    public void updateNumberOfRemainingWordsToGuess() {
+        this.numberOfRemainingWordsToGuess = listOfPeopleToGuess.size(); }
 
     void setListOfPeopleToGuess(ArrayList<String> listOfPeopleToGuess) {
         this.listOfPeopleToGuess = listOfPeopleToGuess;}
@@ -37,16 +42,30 @@ public class GameRound {
     void selectWordAndRemoveFromList() {
         setWordToGuess(getTopWordFromList());
         removeTopWordFromList();
+        updateNumberOfRemainingWordsToGuess();
     }
 
 
 
-
-
-    void startRound() {
+    public void startRound() {
+        System.out.println("remaining Names To Guess:  " + this.numberOfRemainingWordsToGuess);
         this.roundOngoing = true;
-        this.selectWordAndRemoveFromList();
+
+        while (this.numberOfRemainingWordsToGuess >= 1){
+            this.selectWordAndRemoveFromList();
+
+            System.out.println("Name to guess: " + this.getWordToGuess());
+            System.out.println("Type anything for next Name");
+
+            PlayerInputScanner input = new PlayerInputScanner();
+            input.requestAndSavePlayerInput();
+        }
+
+        System.out.println("That's the end of the round! ");
+
+        this.roundOngoing = false;
     }
+
 
 
 
