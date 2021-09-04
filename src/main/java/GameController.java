@@ -11,10 +11,10 @@ public class GameController {
     }
 
     ArrayList<String> listOfPeopleToGuess = new ArrayList<String>();
-    int roundsPlayed = 0;
+    private int roundsPlayed = 0;
 
-    int getRoundsPlayed() { return roundsPlayed; }
-    void addOneRoundPlayed() { roundsPlayed++; }
+    int getRoundsPlayed() { return this.roundsPlayed; }
+    void addOneRoundPlayed() { this.roundsPlayed++; }
 
     void setListOfPeopleToGuess(ArrayList<String> peopleToGuess) {
         this.listOfPeopleToGuess = peopleToGuess;
@@ -26,7 +26,6 @@ public class GameController {
         PlayerInputScanner waitToStart = new PlayerInputScanner();
         waitToStart.requestAndSavePlayerInput();
     }
-
 
 
     // ______________MAIN_____________
@@ -41,7 +40,7 @@ public class GameController {
         game.setListOfPeopleToGuess(setup.getListOfNamesToGuess());
         game.startGame();
 
-        while (game.roundsPlayed < 3) {
+        while (game.getRoundsPlayed() < 3) {
             GameRound round = new GameRound(game.listOfPeopleToGuess);
             round.startRound();
             game.addOneRoundPlayed();

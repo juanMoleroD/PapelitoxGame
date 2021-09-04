@@ -21,11 +21,11 @@ class GameControllerTest {
     @Test
     void doesGameRecognizeHowManyRoundsHaveBeenPlayed() {
         gameTest.startGame();
-        assertEquals(1, gameTest.roundsPlayed);
+        assertEquals(1, gameTest.getRoundsPlayed());
         gameTest.startGame();
-        assertEquals(2, gameTest.roundsPlayed);
+        assertEquals(2, gameTest.getRoundsPlayed());
         gameTest.startGame();
-        assertEquals(3, gameTest.roundsPlayed);
+        assertEquals(3, gameTest.getRoundsPlayed());
     }
 
     @Test
