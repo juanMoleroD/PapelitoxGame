@@ -1,6 +1,4 @@
-package GameSetup;
-
-import PlayerInput.PlayerInputScanner;
+package application;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -18,7 +16,7 @@ public class GameSetup {
             "Each team has 1 minute to get as many guesses as they can. Once all the names have been \n" +
             "guessed, The round finishes, points are tallied and you go to the next round. \n" +
             "Once the 3 round are up, you tally up all the point in the 3 rounds and \n" +
-            "the team with more points wins.";
+            "the team with more points wins." + "\n";
 
 
     public GameSetup(int numberOfNamesPerPlayer) {
@@ -28,12 +26,6 @@ public class GameSetup {
 
     public void setPlayerWantsRules(char playerWantsRules) {
         this.playerWantsRules = playerWantsRules;
-    }
-
-    public String welcome(){
-        String welcome = "Welcome to Papelito!";
-        System.out.println(welcome);
-        return welcome;
     }
 
     public String getRules(){
@@ -55,8 +47,7 @@ public class GameSetup {
 
     public void updateRulesPreference(){
         PlayerInputScanner input = new PlayerInputScanner();
-        input.requestAndSavePlayerInput();
-        char preference = input.getSavedPlayerInput().toUpperCase(Locale.ROOT).charAt(0);
+        char preference = input.getInput().toUpperCase().charAt(0);
 
         if (Character.toString(preference).equals("Y"))
             this.setPlayerWantsRules('Y');
@@ -73,7 +64,7 @@ public class GameSetup {
         else return "";
     }
 
-    public ArrayList<String> getListOfNamesToGuess(){
+    public ArrayList<String> getListOfNamesToPutInHat(){
         return this.listOfNamesToGuess;
     }
 
@@ -83,13 +74,12 @@ public class GameSetup {
 
     private String getNameInput(){
         PlayerInputScanner input = new PlayerInputScanner();
-        input.requestAndSavePlayerInput();
-        return input.getSavedPlayerInput();
+        return input.getInput();
     }
 
     public void requestNameInputsUntilMax(){
         for (int i = 0; i < this.numberOfNamesPerPlayer; i++) {
-            System.out.println("Add a name: ");
+            System.out.println("\n" + "Add a name to the Papelito: ");
             addNameToGuessList(getNameInput());
         }
     }
