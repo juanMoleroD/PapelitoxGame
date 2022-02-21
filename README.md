@@ -1,5 +1,5 @@
 # PapelitoxGame
-Game of Papelito
+Console Game of Papelito
 
 Rules of the game:
 
